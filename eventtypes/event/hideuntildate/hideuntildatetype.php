@@ -13,7 +13,7 @@ class hideUntilDateType extends eZWorkflowEventType
     function __construct()
     {
         include_once( 'kernel/common/i18n.php' );
-        $this->eZWorkflowEventType( hideUntilDateType::WORKFLOW_TYPE_STRING, ezi18n( 'kernel/workflow/event', "Hide until date" ) );
+        $this->eZWorkflowEventType( hideUntilDateType::WORKFLOW_TYPE_STRING, ezpI18n::tr( 'kernel/workflow/event', "Hide until date" ) );
         $this->setTriggerTypes( array( 'content' => array( 'publish' => array( 'after' ) ) ) );
     }
 

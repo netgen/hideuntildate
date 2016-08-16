@@ -69,6 +69,11 @@ class hideUntilDateType extends eZWorkflowEventType
                                 eZContentObjectTreeNode::hideSubTree( $node );
                             }
                         }
+
+                        eZContentCacheManager::clearContentCache( $parameters['object_id'] );
+                        eZContentCacheManager::clearObjectViewCache( $parameters['object_id'] );
+                        eZContentOperationCollection::registerSearchObject( $parameters['object_id'] );
+
                         return eZWorkflowType::STATUS_DEFERRED_TO_CRON_REPEAT;
                     }
                     // The publish date is in the past, so unhide the object and publish it
@@ -85,7 +90,7 @@ class hideUntilDateType extends eZWorkflowEventType
                             eZContentObjectTreeNode::unhideSubTree( $node );
                             eZContentCacheManager::clearContentCache( $parameters['object_id'] );
                             eZContentCacheManager::clearObjectViewCache( $parameters['object_id'] );
-                            eZContentOperationCollection::registerSearchObject($parameters['object_id']);
+                            eZContentOperationCollection::registerSearchObject( $parameters['object_id'] );
                         }
                         return eZWorkflowType::STATUS_ACCEPTED;
                     }
